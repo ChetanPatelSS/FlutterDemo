@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../view_model/services/splash_services.dart';
 
 class SplashView extends StatefulWidget {
@@ -17,7 +16,6 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
     splashServices.checkAuthentication(context);
   }
   @override
