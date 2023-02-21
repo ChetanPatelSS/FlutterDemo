@@ -6,12 +6,12 @@ class ScrollListener extends ChangeNotifier {
 
   ScrollListener.initialise(ScrollController controller, [double height = 56]) {
     controller.addListener(() {
-      final current = controller.offset;
+      /*final current = controller.offset;
       bottom += _last - current;
       if (bottom <= -height) bottom = -height;
       if (bottom >= 0) bottom = 0;
       _last = current;
-      if (bottom <= 0 && bottom >= -height) notifyListeners();
+      if (bottom <= 0 && bottom >= -height) notifyListeners();*/
     });
   }
 }

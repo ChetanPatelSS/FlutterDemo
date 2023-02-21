@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fpp/model/menu_item.dart';
+import 'package:fpp/view/list_screen.dart';
+import 'package:fpp/view/profile_page.dart';
 import 'package:fpp/widgets/custom_image_view.dart';
 import 'package:fpp/theme/app_style.dart';
 import 'package:fpp/utils/color_constant.dart';
@@ -29,8 +31,8 @@ class _HomeDashboardPage extends State<HomeDashboardPage> {
   getScreens(ScrollController scrollController) {
     final buildBody = [
       const DrawerView(),
-      const ContactUsScreen(name: 'Pro'),
-      const ErrorScreen(error: 'Profile')
+      ListScreen(scrollController: scrollController),
+      const ProfilePage(name: 'Pro'),
     ];
     return buildBody;
   }

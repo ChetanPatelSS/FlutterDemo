@@ -26,7 +26,7 @@ class SplashServices {
       }*/
 
       await  Future.delayed(Duration(seconds: 3));
-      Navigator.pushNamed(context, RoutesName.homePage);
+      Navigator.popAndPushNamed(context, RoutesName.homePage);
 
     }).onError((error, stackTrace){
       if(kDebugMode){
