@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fpp/utils/Constants/img_Constant.dart';
 import '../view_model/services/splash_services.dart';
 
 class SplashView extends StatefulWidget {
@@ -9,7 +10,6 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-
   SplashServices splashServices = SplashServices();
 
   @override
@@ -18,12 +18,42 @@ class _SplashViewState extends State<SplashView> {
     super.initState();
     splashServices.checkAuthentication(context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Center(
-        child: Text('Splash screen', style: Theme.of(context).textTheme.headline4,),
+      body: Stack(
+        children: [
+          Image.asset(
+            ImgPathConstant.appLogo,
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+            alignment: Alignment.center,
+          ),
+          Positioned(
+            bottom: 20,
+            left: 10,
+            right: 10,
+            child: Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Do something when the button is pressed
+                },
+                child: const Text('Privacy Policy'),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+
+// Image.asset(
+//           Resources.appLogo,
+//           fit: BoxFit.cover,
+//           height: double.infinity,
+//           width: double.infinity,
+//           alignment: Alignment.center,
+//         ),
