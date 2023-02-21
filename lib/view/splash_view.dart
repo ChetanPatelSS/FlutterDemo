@@ -22,13 +22,38 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Image.asset(
-        Resources.appLogo,
-        fit: BoxFit.cover,
-        height: double.infinity,
-        width: double.infinity,
-        alignment: Alignment.center,
+      body: Stack(
+        children: [
+          Image.asset(
+            Resources.appLogo,
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+            alignment: Alignment.center,
+          ),
+          Positioned(
+            bottom: 20,
+            left: 10,
+            right: 10,
+            child: Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Do something when the button is pressed
+                },
+                child: const Text('Privacy Policy'),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+
+// Image.asset(
+//           Resources.appLogo,
+//           fit: BoxFit.cover,
+//           height: double.infinity,
+//           width: double.infinity,
+//           alignment: Alignment.center,
+//         ),
