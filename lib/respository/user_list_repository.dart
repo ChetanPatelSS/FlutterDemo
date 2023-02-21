@@ -1,7 +1,7 @@
 import '../data/network/BaseApiServices.dart';
 import '../data/network/NetworkApiService.dart';
 import '../model/user_list_model.dart';
-import '../res/app_url.dart';
+import '../data/app_url.dart';
 
 class UserListRepository {
 

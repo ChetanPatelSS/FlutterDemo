@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fpp/model/menu_item.dart';
-import 'package:fpp/res/components/custom_image_view.dart';
+import 'package:fpp/widgets/custom_image_view.dart';
 import 'package:fpp/theme/app_style.dart';
 import 'package:fpp/utils/color_constant.dart';
 import 'package:fpp/utils/image_constant.dart';

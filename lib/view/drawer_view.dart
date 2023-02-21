@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fpp/model/drawer_item_model.dart';
-import 'package:fpp/res/components/app_bar/custom_app_bar.dart';
 import 'package:fpp/utils/image_constant.dart';
 import 'package:fpp/utils/size_utils.dart';
 import 'package:fpp/view/error_screen.dart';
 import 'package:fpp/view/tab_bar_screen.dart';
+import 'package:fpp/widgets/app_bar/appbar_image.dart';
+import 'package:fpp/widgets/app_bar/custom_app_bar.dart';
 import 'package:provider/provider.dart';
-
-import '../res/components/app_bar/appbar_image.dart';
 import '../view_model/drawer_view_model.dart';
 import 'contact_us_screen.dart';
 
