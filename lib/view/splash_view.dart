@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/Constants/resources.dart';
 import '../view_model/services/splash_services.dart';
 
 class SplashView extends StatefulWidget {
@@ -9,7 +10,6 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-
   SplashServices splashServices = SplashServices();
 
   @override
@@ -18,11 +18,16 @@ class _SplashViewState extends State<SplashView> {
     super.initState();
     splashServices.checkAuthentication(context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Center(
-        child: Text('Splash screen', style: Theme.of(context).textTheme.headline4,),
+      body: Image.asset(
+        Resources.appLogo,
+        fit: BoxFit.cover,
+        height: double.infinity,
+        width: double.infinity,
+        alignment: Alignment.center,
       ),
     );
   }
