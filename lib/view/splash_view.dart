@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/Constants/resources.dart';
+import 'package:fpp/utils/Constants/img_Constant.dart';
 import '../view_model/services/splash_services.dart';
 
 class SplashView extends StatefulWidget {
@@ -25,7 +25,7 @@ class _SplashViewState extends State<SplashView> {
       body: Stack(
         children: [
           Image.asset(
-            Resources.appLogo,
+            ImgPathConstant.appLogo,
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
