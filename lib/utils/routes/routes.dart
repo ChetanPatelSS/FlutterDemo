@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fpp/utils/routes/routes_name.dart';
 
+import '../../view/home_dashboard_page.dart';
 import '../../view/home_screen.dart';
 import '../../view/login_view.dart';
 import '../../view/signup_view.dart';
@@ -21,6 +22,8 @@ class Routes {
         return MaterialPageRoute(builder: (BuildContext context) => const LoginView());
       case RoutesName.signUp:
         return MaterialPageRoute(builder: (BuildContext context) => const SignUpView());
+      case RoutesName.homePage:
+        return MaterialPageRoute(builder: (BuildContext context) => const HomeDashboardPage());
 
       default:
         return MaterialPageRoute(builder: (_){

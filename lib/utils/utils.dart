@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Utils {
@@ -51,4 +54,9 @@ class Utils {
     );
   }
 
+  static setLog(String tag, String msg){
+    if(kDebugMode){
+      log("$tag: $msg");
+    }
+  }
 }

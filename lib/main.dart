@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fpp/utils/routes/routes.dart';
 import 'package:fpp/utils/routes/routes_name.dart';
 import 'package:fpp/view_model/auth_view_model.dart';
+import 'package:fpp/view_model/drawer_view_model.dart';
 import 'package:fpp/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => AuthViewModel()),
-      ChangeNotifierProvider(create: (_) => UserViewModel())
+      ChangeNotifierProvider(create: (_) => UserViewModel()),
+      ChangeNotifierProvider(create: (_) => DrawerViewModel())
     ],
     child: MaterialApp(
       title: 'Flutter Demo',
