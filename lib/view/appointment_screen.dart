@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:fpp/res/components/app_bar/custom_app_bar.dart';
-import 'package:fpp/res/components/custom_image_view.dart';
 import 'package:fpp/theme/app_decoration.dart';
 import 'package:fpp/theme/app_style.dart';
 import 'package:fpp/utils/color_constant.dart';
 import 'package:fpp/utils/image_constant.dart';
 import 'package:fpp/utils/size_utils.dart';
+import 'package:fpp/widgets/app_bar/custom_app_bar.dart';
 import 'package:fpp/widgets/appbar_image.dart';
 import 'package:fpp/widgets/custom_bottom_bar.dart';
 import 'package:fpp/widgets/custom_button.dart';
 import 'package:fpp/widgets/custom_checkbox.dart';
 import 'package:fpp/widgets/custom_drop_down.dart';
+import 'package:fpp/widgets/custom_image_view.dart';
 import 'package:fpp/widgets/custom_text_form_field.dart';
 
 // class AppointmentScreen extends StatefulWidget {
