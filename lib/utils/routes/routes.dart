@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fpp/utils/routes/routes_name.dart';
+import 'package:fpp/view/tab_appointment_screen.dart';
 
 import '../../view/home_dashboard_page.dart';
 import '../../view/home_screen.dart';
@@ -24,6 +25,8 @@ class Routes {
         return MaterialPageRoute(builder: (BuildContext context) => const SignUpView());
       case RoutesName.homePage:
         return MaterialPageRoute(builder: (BuildContext context) => const HomeDashboardPage());
+      case RoutesName.homeAppointmentPage:
+        return MaterialPageRoute(builder: (BuildContext context) => TabAppointmentScreenView() );
 
       default:
         return MaterialPageRoute(builder: (_){

@@ -25,6 +25,7 @@ class ColorConstant {
   static Color red400 = fromHex('#d75059');
 
   static Color lightBlue60019 = fromHex('#19179dd9');
+  static Color lightBlueF5f5f5 = fromHex('#F5F5F5');
 
   static Color gray300 = fromHex('#e0e0e0');
 
@@ -35,6 +36,7 @@ class ColorConstant {
   static Color bluegray400 = fromHex('#888888');
 
   static Color lightBlue6000c = fromHex('#0c009ee0');
+  static Color transparent = Color.fromRGBO(255, 255, 255, 0.2);
 
   static Color blueGray900 = fromHex('#333333');
 

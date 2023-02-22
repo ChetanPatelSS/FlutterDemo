@@ -11,6 +11,7 @@ class RoutesName {
   static const String home = 'home_sceen' ;
 
   static const String homePage = 'home_page' ;
+  static const String homeAppointmentPage = 'home_appointement_page' ;
 
 
 

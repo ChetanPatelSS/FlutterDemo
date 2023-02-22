@@ -3,6 +3,7 @@ import 'package:fpp/model/drawer_item_model.dart';
 import 'package:fpp/utils/image_constant.dart';
 import 'package:fpp/utils/size_utils.dart';
 import 'package:fpp/view/error_screen.dart';
+import 'package:fpp/view/tab_appointment_screen.dart';
 import 'package:fpp/view/tab_bar_screen.dart';
 import 'package:fpp/widgets/app_bar/appbar_image.dart';
 import 'package:fpp/widgets/app_bar/custom_app_bar.dart';
@@ -28,8 +29,9 @@ class DrawerViewState extends State<DrawerView> {
   ];
 
   List<Widget> pages = [
+    const TabAppointmentScreenView(),
     const ErrorScreen(error: 'Home'),
-    const ContactUsScreen(name: 'Test',),
+    // const ContactUsScreen(name: 'Test',),
     const TabBarScreen(initTab: CurrentTab.contactus),
   ];
 

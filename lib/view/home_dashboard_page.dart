@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:fpp/model/menu_item.dart';
+import 'package:fpp/model/bottom_menu_item.dart';
+import 'package:fpp/view/home_tab_bar_screen.dart';
 import 'package:fpp/view/list_screen.dart';
 import 'package:fpp/view/patient_page.dart';
 import 'package:fpp/view/profile_page.dart';
+import 'package:fpp/view/tab_appointment_screen.dart';
 import 'package:fpp/widgets/custom_image_view.dart';
 import 'package:fpp/theme/app_style.dart';
 import 'package:fpp/utils/color_constant.dart';
@@ -23,15 +25,17 @@ class HomeDashboardPage extends StatefulWidget {
 
 class _HomeDashboardPage extends State<HomeDashboardPage> {
   final menuItemList = [
-    MenuItem(icon: ImageConstant.imgCalendar, title: 'Home'),
-    MenuItem(icon: ImageConstant.imgUser, title: 'Patient'),
-    MenuItem(icon: ImageConstant.imgUserGray900, title: 'Profile'),
+    BottomMenuItem(icon: ImageConstant.imgCalendar, title: 'Home'),
+    BottomMenuItem(icon: ImageConstant.imgUser, title: 'Patient'),
+    BottomMenuItem(icon: ImageConstant.imgUserGray900, title: 'Profile'),
   ];
   int index = 0;
 
   getScreens(ScrollController scrollController) {
     final buildBody = [
-      const DrawerView(),
+      const HomeTabBarScreen(initTab: CurrentTab.Appointment),
+      // const DrawerView(),
+      // const TabAppointmentScreen()
       //ListScreen(scrollController: scrollController),
       const PatientPage(),
       const ProfilePage(name: 'Pro'),
@@ -143,99 +147,99 @@ class _HomeDashboardPage extends State<HomeDashboardPage> {
           },
           items: menuItemList
               .map((item) => BottomNavigationBarItem(
-            icon: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                CustomImageView(
-                  svgPath: item.icon,
-                  height: getSize(
-                    24,
-                  ),
-                  width: getSize(
-                    24,
-                  ),
-                  color: ColorConstant.gray900,
-                  radius: BorderRadius.only(
-                    topLeft: Radius.circular(
-                      getHorizontalSize(
-                        30,
-                      ),
+                    icon: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        CustomImageView(
+                          svgPath: item.icon,
+                          height: getSize(
+                            24,
+                          ),
+                          width: getSize(
+                            24,
+                          ),
+                          color: ColorConstant.gray900,
+                          radius: BorderRadius.only(
+                            topLeft: Radius.circular(
+                              getHorizontalSize(
+                                30,
+                              ),
+                            ),
+                            topRight: Radius.circular(
+                              getHorizontalSize(
+                                30,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: getPadding(
+                            top: 7,
+                          ),
+                          child: Text(
+                            item.title ?? "",
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                            style: AppStyle.txtTitilliumWebRegular12.copyWith(
+                              letterSpacing: getHorizontalSize(
+                                0.12,
+                              ),
+                              color: ColorConstant.gray900,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    topRight: Radius.circular(
-                      getHorizontalSize(
-                        30,
-                      ),
+                    activeIcon: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        CustomImageView(
+                          svgPath: item.icon,
+                          height: getSize(
+                            24,
+                          ),
+                          width: getSize(
+                            24,
+                          ),
+                          color: ColorConstant.lightBlue600,
+                          radius: BorderRadius.only(
+                            topLeft: Radius.circular(
+                              getHorizontalSize(
+                                30,
+                              ),
+                            ),
+                            topRight: Radius.circular(
+                              getHorizontalSize(
+                                30,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: getPadding(
+                            top: 8,
+                          ),
+                          child: Text(
+                            item.title ?? "",
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                            style: AppStyle.txtTitilliumWebRegular12Lightblue600
+                                .copyWith(
+                              letterSpacing: getHorizontalSize(
+                                0.12,
+                              ),
+                              color: ColorConstant.lightBlue600,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: getPadding(
-                    top: 7,
-                  ),
-                  child: Text(
-                    item.title ?? "",
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.left,
-                    style: AppStyle.txtTitilliumWebRegular12.copyWith(
-                      letterSpacing: getHorizontalSize(
-                        0.12,
-                      ),
-                      color: ColorConstant.gray900,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            activeIcon: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                CustomImageView(
-                  svgPath: item.icon,
-                  height: getSize(
-                    24,
-                  ),
-                  width: getSize(
-                    24,
-                  ),
-                  color: ColorConstant.lightBlue600,
-                  radius: BorderRadius.only(
-                    topLeft: Radius.circular(
-                      getHorizontalSize(
-                        30,
-                      ),
-                    ),
-                    topRight: Radius.circular(
-                      getHorizontalSize(
-                        30,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: getPadding(
-                    top: 8,
-                  ),
-                  child: Text(
-                    item.title ?? "",
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.left,
-                    style:
-                    AppStyle.txtTitilliumWebRegular12Lightblue600.copyWith(
-                      letterSpacing: getHorizontalSize(
-                        0.12,
-                      ),
-                      color: ColorConstant.lightBlue600,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            label: '',
-          ))
+                    label: '',
+                  ))
               .toList(),
         ),
       ),
