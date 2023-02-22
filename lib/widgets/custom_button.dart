@@ -125,6 +125,8 @@ class CustomButton extends StatelessWidget {
     switch (variant) {
       case ButtonVariant.OutlineTeal90019:
         return ColorConstant.whiteA700;
+      case ButtonVariant.Unselected:
+        return null;
       case ButtonVariant.OutlineLightblue60001:
         return ColorConstant.lightBlue6001901;
       case ButtonVariant.OutlineLightblue6000c:
@@ -150,10 +152,27 @@ class CustomButton extends StatelessWidget {
     }
   }
 
+  _setTextButtonColor() {
+    switch (variant) {
+      case ButtonVariant.OutlineTeal90019:
+        return ColorConstant.teal90019;
+      case ButtonVariant.Unselected:
+        return ColorConstant.gray600;
+      case ButtonVariant.OutlineLightblue6000c:
+        return ColorConstant.lightBlue6000c;
+      case ButtonVariant.OutlineLightblue6000c_1:
+        return ColorConstant.lightBlue6000c;
+      default:
+        return null;
+    }
+  }
+
   _setTextButtonShadowColor() {
     switch (variant) {
       case ButtonVariant.OutlineTeal90019:
         return ColorConstant.teal90019;
+      case ButtonVariant.Unselected:
+        return ColorConstant.gray600;
       case ButtonVariant.OutlineLightblue6000c:
         return ColorConstant.lightBlue6000c;
       case ButtonVariant.OutlineLightblue6000c_1:
@@ -210,7 +229,7 @@ class CustomButton extends StatelessWidget {
         );
       case ButtonFontStyle.TitilliumWebBold12:
         return TextStyle(
-          color: ColorConstant.whiteA700,
+          color: ColorConstant.gray600,
           fontSize: getFontSize(
             12,
           ),
@@ -222,12 +241,12 @@ class CustomButton extends StatelessWidget {
         );
       default:
         return TextStyle(
-          color: ColorConstant.gray900,
+          color: ColorConstant.gray600,
           fontSize: getFontSize(
             12,
           ),
           fontFamily: 'Titillium Web',
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w600,
           height: getVerticalSize(
             1.58,
           ),
@@ -251,6 +270,7 @@ enum ButtonPadding {
 enum ButtonVariant {
   FillLightblue600,
   OutlineTeal90019,
+  Unselected,
   OutlineLightblue60001,
   OutlineLightblue6000c,
   OutlineLightblue6000c_1,

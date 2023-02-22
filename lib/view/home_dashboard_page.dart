@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:fpp/model/menu_item.dart';
+import 'package:fpp/model/bottom_menu_item.dart';
+import 'package:fpp/view/home_tab_bar_screen.dart';
 import 'package:fpp/view/list_screen.dart';
 import 'package:fpp/view/profile_page.dart';
+import 'package:fpp/view/tab_appointment_screen.dart';
 import 'package:fpp/widgets/custom_image_view.dart';
 import 'package:fpp/theme/app_style.dart';
 import 'package:fpp/utils/color_constant.dart';
@@ -22,15 +24,17 @@ class HomeDashboardPage extends StatefulWidget {
 
 class _HomeDashboardPage extends State<HomeDashboardPage> {
   final menuItemList = [
-    MenuItem(icon: ImageConstant.imgCalendar, title: 'Home'),
-    MenuItem(icon: ImageConstant.imgUser, title: 'Patient'),
-    MenuItem(icon: ImageConstant.imgUserGray900, title: 'Profile'),
+    BottomMenuItem(icon: ImageConstant.imgCalendar, title: 'Home'),
+    BottomMenuItem(icon: ImageConstant.imgUser, title: 'Patient'),
+    BottomMenuItem(icon: ImageConstant.imgUserGray900, title: 'Profile'),
   ];
   int index = 0;
 
   getScreens(ScrollController scrollController) {
     final buildBody = [
-      const DrawerView(),
+      const HomeTabBarScreen(initTab: CurrentTab.Appointment),
+      // const DrawerView(),
+      // const TabAppointmentScreen()
       ListScreen(scrollController: scrollController),
       const ProfilePage(name: 'Pro'),
     ];
