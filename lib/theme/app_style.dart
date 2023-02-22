@@ -245,4 +245,13 @@ class AppStyle {
     fontFamily: 'Titillium Web',
     fontWeight: FontWeight.w700,
   );
+
+  static TextStyle txtTitilliumWebSemiBold14WhiteA700 = TextStyle(
+    color: ColorConstant.whiteA700,
+    fontSize: getFontSize(
+      14,
+    ),
+    fontFamily: 'Titillium Web',
+    fontWeight: FontWeight.w600,
+  );
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fpp/model/menu_item.dart';
 import 'package:fpp/view/list_screen.dart';
+import 'package:fpp/view/patient_page.dart';
 import 'package:fpp/view/profile_page.dart';
 import 'package:fpp/widgets/custom_image_view.dart';
 import 'package:fpp/theme/app_style.dart';
@@ -31,7 +32,8 @@ class _HomeDashboardPage extends State<HomeDashboardPage> {
   getScreens(ScrollController scrollController) {
     final buildBody = [
       const DrawerView(),
-      ListScreen(scrollController: scrollController),
+      //ListScreen(scrollController: scrollController),
+      const PatientPage(),
       const ProfilePage(name: 'Pro'),
     ];
     return buildBody;

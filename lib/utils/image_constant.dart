@@ -15,6 +15,8 @@ class ImageConstant {
 
   static String imgArrowdown = 'assets/images/img_arrowdown.svg';
 
+  static String imgSort = 'assets/images/img_sort.svg';
+
   static String imgClose = 'assets/images/img_close.svg';
 
   static String imgArrowup = 'assets/images/img_arrowup.svg';
