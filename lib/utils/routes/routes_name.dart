@@ -13,6 +13,8 @@ class RoutesName {
   static const String homePage = 'home_page' ;
   static const String homeAppointmentPage = 'home_appointement_page' ;
 
+  static const String patientAddDetailsPage = 'patient_add_details_page' ;
+
 
 
 }

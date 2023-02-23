@@ -23,7 +23,6 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Center(
         child: Container(
           width: double.infinity,
-          color: Colors.orange,
           child: Column(
             children: [
               const Text("Profile",style: TextStyle(fontSize: 20),),

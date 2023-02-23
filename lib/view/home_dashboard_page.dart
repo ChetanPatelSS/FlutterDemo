@@ -33,8 +33,8 @@ class _HomeDashboardPage extends State<HomeDashboardPage> {
 
   getScreens(ScrollController scrollController) {
     final buildBody = [
-      const HomeTabBarScreen(initTab: CurrentTab.Appointment),
-      // const DrawerView(),
+      //const HomeTabBarScreen(initTab: CurrentTab.Appointment),
+       const DrawerView(),
       // const TabAppointmentScreen()
       //ListScreen(scrollController: scrollController),
       const PatientPage(),

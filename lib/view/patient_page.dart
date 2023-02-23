@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fpp/utils/routes/routes_name.dart';
 import 'package:fpp/widgets/custom_icon_button.dart';
 import '../widgets/custom_drop_down.dart';
 import '../theme/app_decoration.dart';
@@ -232,7 +233,9 @@ class _PatientPageState extends State<PatientPage> {
           child: SizedBox(
             height: 45,
             child: FloatingActionButton.extended(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.pushNamed(context, RoutesName.patientAddDetailsPage);
+              },
               label: Text(
               "Add Patient",
               overflow: TextOverflow.ellipsis,
@@ -258,6 +261,6 @@ class _PatientPageState extends State<PatientPage> {
   }
 
   onTapArrowleft(BuildContext context) {
-    Navigator.pop(context);
+    //Navigator.pop(context);
   }
 }

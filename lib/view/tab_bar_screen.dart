@@ -3,7 +3,7 @@ import 'package:fpp/view/contact_us_screen.dart';
 import 'package:fpp/view/error_screen.dart';
 
 class TabBarScreen extends StatefulWidget {
-  final CurrentTab initTab;
+  final CurrentTabItem initTab;
   const TabBarScreen({Key? key, required this.initTab}) : super(key: key);
 
   @override
@@ -11,9 +11,9 @@ class TabBarScreen extends StatefulWidget {
 }
 
 class _TabBarScreenState extends State<TabBarScreen> {
-  late CurrentTab previousTab;
-  late CurrentTab currentTab;
-  changeTab(CurrentTab currentTab){
+  late CurrentTabItem previousTab;
+  late CurrentTabItem currentTab;
+  changeTab(CurrentTabItem currentTab){
     setState(() {
       //previousTab = this.currentTab;
       this.currentTab = currentTab;
@@ -72,4 +72,4 @@ class _TabBarScreenState extends State<TabBarScreen> {
   }
 }
 
-enum CurrentTab { error, contactus }
+enum CurrentTabItem { error, contactus }

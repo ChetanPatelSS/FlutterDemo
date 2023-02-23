@@ -23,7 +23,6 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
       body: Center(
         child: Container(
           width: double.infinity,
-          color: Colors.orange,
           child: Column(
             children: [
               Text("Contact us screen",style: TextStyle(fontSize: 20),),
