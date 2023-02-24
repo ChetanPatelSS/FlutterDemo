@@ -4,6 +4,7 @@ import '../theme/app_style.dart';
 import '../utils/size_utils.dart';
 import '../widgets/custom_radio_button.dart';
 
+
 class AddPatientJobsAndEducationPage extends StatefulWidget{
   const AddPatientJobsAndEducationPage({Key? key, required this.onSubmit}) : super(key: key);
 
