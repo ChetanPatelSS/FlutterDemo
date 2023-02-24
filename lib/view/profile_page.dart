@@ -19,21 +19,9 @@ class _ProfilePageState extends State<ProfilePage> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Container(
-          width: double.infinity,
-          child: Column(
-            children: [
-              const Text("Profile",style: TextStyle(fontSize: 20),),
-              ElevatedButton(onPressed: (){
-                setState(() {
-                  count++;
-                });
-              }, child: Text(count.toString()))
-            ],
-          ),
-        ),
+        child: Text("Coming soon",style: TextStyle(fontSize: 20),),
       ),
     );
   }

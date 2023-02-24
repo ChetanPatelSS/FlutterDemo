@@ -12,7 +12,9 @@ import 'package:fpp/widgets/custom_radio_button.dart';
 import 'package:fpp/widgets/custom_text_form_field.dart';
 
 class AddPatientIdentificationPage extends StatefulWidget {
-  const AddPatientIdentificationPage({Key? key}) : super(key: key);
+  const AddPatientIdentificationPage({Key? key, required this.onNext}) : super(key: key);
+
+  final VoidCallback onNext;
 
   @override
   State<AddPatientIdentificationPage> createState() => _AddPatientIdentificationPageState();
@@ -747,24 +749,27 @@ class _AddPatientIdentificationPageState extends State<AddPatientIdentificationP
                           ),
                         ),
                       ),
-                      Container(
-                        width: double.infinity,
-                        margin: getMargin(
-                          top: 30,
-                        ),
-                        padding: getPadding(
-                            all: 16
-                        ),
-                        decoration: AppDecoration.txtFillLightblue600.copyWith(
-                          borderRadius: BorderRadiusStyle.txtRoundedBorder5,
-                        ),
-                        child: Text(
-                          "SAVE AND NEXT",
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: AppStyle.txtTitilliumWebBold16.copyWith(
-                            letterSpacing: getHorizontalSize(
-                              0.8,
+                      InkWell(
+                        onTap: widget.onNext,
+                        child: Container(
+                          width: double.infinity,
+                          margin: getMargin(
+                            top: 30,
+                          ),
+                          padding: getPadding(
+                              all: 16
+                          ),
+                          decoration: AppDecoration.txtFillLightblue600.copyWith(
+                            borderRadius: BorderRadiusStyle.txtRoundedBorder5,
+                          ),
+                          child: Text(
+                            "SAVE AND NEXT",
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: AppStyle.txtTitilliumWebBold16.copyWith(
+                              letterSpacing: getHorizontalSize(
+                                0.8,
+                              ),
                             ),
                           ),
                         ),

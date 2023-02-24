@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fpp/view/contact_us_screen.dart';
 import 'package:fpp/view/error_screen.dart';
+import 'package:fpp/view/tab_availibility_screen.dart';
 import 'package:fpp/view/tab_appointment_screen.dart';
 
 class HomeTabBarScreen extends StatefulWidget {
@@ -62,7 +63,7 @@ class _TabBarScreenState extends State<HomeTabBarScreen> {
                     child: TabBarView(
                       children: [
                         TabAppointmentScreenView(),
-                        ContactUsScreen(name: 'Pro'),
+                        TabAvailibilityScreen(),
                       ],
                     ),
                   )

@@ -26,6 +26,8 @@ class TabAppointmentScreenState extends State<TabAppointmentScreenView>{
     "Item Three",
   ];
 
+  CurrentAppointmentTab currentAppointmentTab = CurrentAppointmentTab.Upcoming;
+
   @override
   Widget build(BuildContext context) {
 
@@ -348,10 +350,13 @@ class TabAppointmentScreenState extends State<TabAppointmentScreenView>{
                                               84,
                                             ),
                                             text: "Upcoming",
-                                            variant: ButtonVariant.OutlineTeal90019,
+                                            variant: currentAppointmentTab == CurrentAppointmentTab.Upcoming ? ButtonVariant.OutlineTeal90019 : ButtonVariant.Unselected,
                                             fontStyle:
-                                            ButtonFontStyle.TitilliumWebSemiBold12,
+                                            currentAppointmentTab == CurrentAppointmentTab.Upcoming ? ButtonFontStyle.TitilliumWebSemiBold12 : ButtonFontStyle.None,
                                             onTap: () {
+                                              setState(() {
+                                                currentAppointmentTab = CurrentAppointmentTab.Upcoming;
+                                              });
                                             },
 
                                           ),
@@ -363,7 +368,14 @@ class TabAppointmentScreenState extends State<TabAppointmentScreenView>{
                                               34,
                                             ),
                                             text: "Past",
-                                            variant: ButtonVariant.Unselected,
+                                            variant: currentAppointmentTab == CurrentAppointmentTab.Past ? ButtonVariant.OutlineTeal90019 : ButtonVariant.Unselected,
+                                            fontStyle:
+                                            currentAppointmentTab == CurrentAppointmentTab.Past ? ButtonFontStyle.TitilliumWebSemiBold12 : ButtonFontStyle.None,
+                                            onTap: (){
+                                              setState(() {
+                                                currentAppointmentTab = CurrentAppointmentTab.Past;
+                                              });
+                                            },
                                           ),
                                           CustomButton(
                                             height: getVerticalSize(
@@ -373,7 +385,14 @@ class TabAppointmentScreenState extends State<TabAppointmentScreenView>{
                                               34,
                                             ),
                                             text: "Cancelled",
-                                            variant: ButtonVariant.Unselected,
+                                            variant: currentAppointmentTab == CurrentAppointmentTab.Cancelled ? ButtonVariant.OutlineTeal90019 : ButtonVariant.Unselected,
+                                            fontStyle:
+                                            currentAppointmentTab == CurrentAppointmentTab.Cancelled ? ButtonFontStyle.TitilliumWebSemiBold12 : ButtonFontStyle.None,
+                                            onTap: (){
+                                              setState(() {
+                                                currentAppointmentTab = CurrentAppointmentTab.Cancelled;
+                                              });
+                                            },
                                           ),
 
                                         ],
@@ -681,3 +700,4 @@ class TabAppointmentScreenState extends State<TabAppointmentScreenView>{
   }
 
 }
+enum CurrentAppointmentTab { Upcoming, Past, Cancelled }

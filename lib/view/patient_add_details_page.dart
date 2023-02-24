@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fpp/utils/color_constant.dart';
 import 'package:fpp/utils/image_constant.dart';
 import 'package:fpp/utils/size_utils.dart';
+import 'package:fpp/view/add_patient_emergency_contacts_page.dart';
 import 'package:fpp/view/add_patient_identification_page.dart';
+import 'package:fpp/view/add_patient_jobs_and_education_page.dart';
 import 'package:fpp/widgets/app_bar/appbar_image.dart';
 import 'package:fpp/widgets/app_bar/appbar_title.dart';
 import 'package:fpp/widgets/app_bar/custom_app_bar.dart';
@@ -116,11 +118,15 @@ class _PatientAddDetailsPageState extends State<PatientAddDetailsPage> with Tick
                               Container(
                                   height: getVerticalSize(1425),
                                   child: TabBarView(children: [
-                                    AddPatientIdentificationPage(),
-                                    AddPatientIdentificationPage(),
-                                    AddPatientIdentificationPage(),
-                                    //AddPatientEmergencyContactsPage(),
-                                    //AddPatientJobsAndEducationPage()
+                                    AddPatientIdentificationPage(
+                                        onNext: () => _tabController.index = 1
+                                    ),
+                                    AddPatientEmergencyContactsPage(
+                                        onNext: () => _tabController.index = 2
+                                    ),
+                                    AddPatientJobsAndEducationPage(
+                                        onSubmit: () => onTapArrowleft1(context)
+                                    )
                                   ],
                                   controller: _tabController,))
                             ]))))

@@ -277,6 +277,7 @@ enum ButtonVariant {
 }
 
 enum ButtonFontStyle {
+  None,
   TitilliumWebBold16,
   TitilliumWebSemiBold12,
   TitilliumWebRegular12,
