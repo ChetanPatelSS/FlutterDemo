@@ -74,7 +74,7 @@ class _PatientAddDetailsPageState extends State<PatientAddDetailsPage> with Tick
                                               offset: const Offset(0, 1))
                                         ]),
                                     child: TabBar(
-                                      labelPadding: EdgeInsets.zero,
+                                      //labelPadding: EdgeInsets.zero,
                                         labelColor: ColorConstant.lightBlue600,
                                         labelStyle: TextStyle(
                                             fontSize: getFontSize(12),
