@@ -21,7 +21,7 @@ class DrawerView extends StatefulWidget {
   }
 }
 
-class DrawerViewState extends State<DrawerView> {
+class DrawerViewState extends State<DrawerView> with AutomaticKeepAliveClientMixin{
 
   final drawerItems = [
     DrawerItem("Demo 1", Icons.rss_feed),
@@ -113,4 +113,8 @@ class DrawerViewState extends State<DrawerView> {
         ),
       ),);
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

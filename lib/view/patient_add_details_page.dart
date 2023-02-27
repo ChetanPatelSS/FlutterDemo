@@ -74,6 +74,7 @@ class _PatientAddDetailsPageState extends State<PatientAddDetailsPage> with Tick
                                               offset: const Offset(0, 1))
                                         ]),
                                     child: TabBar(
+                                      labelPadding: EdgeInsets.zero,
                                         labelColor: ColorConstant.lightBlue600,
                                         labelStyle: TextStyle(
                                             fontSize: getFontSize(12),
@@ -117,7 +118,7 @@ class _PatientAddDetailsPageState extends State<PatientAddDetailsPage> with Tick
                               ),
                               Container(
                                   height: getVerticalSize(1425),
-                                  child: TabBarView(children: [
+                                  child: TabBarView(controller: _tabController,children: [
                                     AddPatientIdentificationPage(
                                         onNext: () => _tabController.index = 1
                                     ),
@@ -127,8 +128,7 @@ class _PatientAddDetailsPageState extends State<PatientAddDetailsPage> with Tick
                                     AddPatientJobsAndEducationPage(
                                         onSubmit: () => onTapArrowleft1(context)
                                     )
-                                  ],
-                                  controller: _tabController,))
+                                  ],))
                             ]))))
         ));
   }

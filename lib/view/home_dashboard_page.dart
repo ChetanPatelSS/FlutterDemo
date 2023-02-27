@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fpp/model/bottom_menu_item.dart';
-import 'package:fpp/view/home_tab_bar_screen.dart';
-import 'package:fpp/view/list_screen.dart';
+import 'package:fpp/view_model/tab_navigator.dart';
 import 'package:fpp/view/patient_page.dart';
 import 'package:fpp/view/profile_page.dart';
-import 'package:fpp/view/tab_appointment_screen.dart';
 import 'package:fpp/widgets/custom_image_view.dart';
 import 'package:fpp/theme/app_style.dart';
 import 'package:fpp/utils/color_constant.dart';
 import 'package:fpp/utils/image_constant.dart';
 import 'package:fpp/utils/size_utils.dart';
-import 'package:fpp/view/contact_us_screen.dart';
 import 'package:fpp/view/drawer_view.dart';
-import 'package:fpp/view/error_screen.dart';
 import '../view_model/bottom_navigation_scroll_listener.dart';
 
 class HomeDashboardPage extends StatefulWidget {
@@ -24,12 +20,31 @@ class HomeDashboardPage extends StatefulWidget {
 }
 
 class _HomeDashboardPage extends State<HomeDashboardPage> {
+
+  var _currentPage = BottomNavigationTabItem.home;
+  final Map<BottomNavigationTabItem, GlobalKey<NavigatorState>> _navigatorKeys = {
+    BottomNavigationTabItem.home: GlobalKey<NavigatorState>(),
+    BottomNavigationTabItem.patient: GlobalKey<NavigatorState>(),
+    BottomNavigationTabItem.profile: GlobalKey<NavigatorState>(),
+  };
+  int _selectedIndex = 0;
+
+  void _selectTab(BottomNavigationTabItem tabItem, int index) {
+    if(tabItem == _currentPage ){
+      _navigatorKeys[tabItem]?.currentState?.popUntil((route) => route.isFirst);
+    } else {
+      setState(() {
+        _currentPage = tabItem;
+        _selectedIndex = index;
+      });
+    }
+  }
+
   final menuItemList = [
-    BottomMenuItem(icon: ImageConstant.imgCalendar, title: 'Home'),
-    BottomMenuItem(icon: ImageConstant.imgUser, title: 'Patient'),
-    BottomMenuItem(icon: ImageConstant.imgUserGray900, title: 'Profile'),
+    BottomMenuItem(icon: ImageConstant.imgCalendar, title: BottomNavigationTabItem.home.title),
+    BottomMenuItem(icon: ImageConstant.imgUser, title: BottomNavigationTabItem.patient.title),
+    BottomMenuItem(icon: ImageConstant.imgUserGray900, title: BottomNavigationTabItem.profile.title),
   ];
-  int index = 0;
 
   getScreens(ScrollController scrollController) {
     final buildBody = [
@@ -72,29 +87,49 @@ class _HomeDashboardPage extends State<HomeDashboardPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            body: AnimatedBuilder(
-              animation: _model,
-              builder: (context, child) {
-                return Stack(
-                  children: [
-                    IndexedStack(
-                      index: index,
-                      children: [
-                        for (int i = 0; i < getScreens(_controller).length; i++)
-                          getScreens(_controller)[i]
-                      ],
-                    ),
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: _model.bottom,
-                      child: _bottomNavBar,
-                    ),
-                  ],
-                );
-              },
-            )));
+        child: WillPopScope(
+          onWillPop: () async {
+            final isFirstRouteInCurrentTab =
+            !await _navigatorKeys[_currentPage]!.currentState!.maybePop();
+            if (isFirstRouteInCurrentTab) {
+              if (_currentPage != BottomNavigationTabItem.home) {
+                _selectTab(BottomNavigationTabItem.home, 0);
+
+                return false;
+              }
+            }
+            // let system handle back button if we're on the first route
+            return isFirstRouteInCurrentTab;
+          },
+          child: Scaffold(
+              body: AnimatedBuilder(
+                animation: _model,
+                builder: (context, child) {
+                  return Stack(
+                    children: [
+                      IndexedStack(
+                        index: _selectedIndex,
+                        /*children: [
+                          for (int i = 0; i < getScreens(_controller).length; i++)
+                            getScreens(_controller)[i]
+                        ],*/
+                          children:<Widget>[
+                            _buildOffstageNavigator(BottomNavigationTabItem.home),
+                            _buildOffstageNavigator(BottomNavigationTabItem.patient),
+                            _buildOffstageNavigator(BottomNavigationTabItem.profile),
+                          ]
+                      ),
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: _model.bottom,
+                        child: _bottomNavBar,
+                      ),
+                    ],
+                  );
+                },
+              )),
+        ));
   }
 
   Widget get _bottomNavBar {
@@ -139,12 +174,8 @@ class _HomeDashboardPage extends State<HomeDashboardPage> {
           elevation: 0.0,
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.transparent,
-          currentIndex: index,
-          onTap: (x) {
-            setState(() {
-              index = x;
-            });
-          },
+          currentIndex: _selectedIndex,
+          onTap:  (int index) { _selectTab(BottomNavigationTabItem.values[index], index); },
           items: menuItemList
               .map((item) => BottomNavigationBarItem(
                     icon: Column(
@@ -245,4 +276,22 @@ class _HomeDashboardPage extends State<HomeDashboardPage> {
       ),
     );
   }
+
+  Widget _buildOffstageNavigator(BottomNavigationTabItem tabItem) {
+    return Offstage(
+      offstage: _currentPage.title != tabItem.title,
+      child: TabNavigator3(
+        navigatorKey: _navigatorKeys[tabItem]!,
+        tabItem: tabItem,
+      ),
+    );
+  }
+}
+enum BottomNavigationTabItem {
+  home("Home"),
+  patient("Patient"),
+  profile("Profile");
+
+  const BottomNavigationTabItem(this.title);
+  final String title;
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fpp/utils/routes/routes_name.dart';
+import 'package:fpp/view/patient_add_details_page.dart';
 import 'package:fpp/widgets/custom_icon_button.dart';
 import '../widgets/custom_drop_down.dart';
 import '../theme/app_decoration.dart';
@@ -70,7 +71,7 @@ class _PatientPageState extends State<PatientPage> {
                           color: ColorConstant.lightBlue6001901.withOpacity(0.1),
                           spreadRadius: 1,
                           blurRadius: 1,
-                          offset: Offset(0, 1), // changes position of shadow
+                          offset: const Offset(0, 1), // changes position of shadow
                         ),
                       ],),
 
@@ -157,7 +158,7 @@ class _PatientPageState extends State<PatientPage> {
                                             color: ColorConstant.lightBlue6001901.withOpacity(0.1),
                                             spreadRadius: 1,
                                             blurRadius: 1,
-                                            offset: Offset(0, 1), // changes position of shadow
+                                            offset: const Offset(0, 1), // changes position of shadow
                                           ),
                                         ]),
 
@@ -191,7 +192,7 @@ class _PatientPageState extends State<PatientPage> {
                                               color: ColorConstant.lightBlue6001901.withOpacity(0.1),
                                               spreadRadius: 1,
                                               blurRadius: 1,
-                                              offset: Offset(0, 1), // changes position of shadow
+                                              offset: const Offset(0, 1), // changes position of shadow
                                             ),
                                           ]),
                                       child: Container(
@@ -234,7 +235,10 @@ class _PatientPageState extends State<PatientPage> {
             height: 45,
             child: FloatingActionButton.extended(
               onPressed: (){
-                Navigator.pushNamed(context, RoutesName.patientAddDetailsPage);
+                //Navigator.pushNamed(context, RoutesName.patientAddDetailsPage);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (BuildContext context) =>
+                        const PatientAddDetailsPage()));
               },
               label: Text(
               "Add Patient",
