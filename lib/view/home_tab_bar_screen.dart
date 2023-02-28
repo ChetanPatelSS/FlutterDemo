@@ -63,7 +63,7 @@ class _TabBarScreenState extends State<HomeTabBarScreen> {
                     child: TabBarView(
                       children: [
                         TabAppointmentScreenView(),
-                        TabAvailibilityScreen(),
+                        TabAvailabilityScreen(),
                       ],
                     ),
                   )
