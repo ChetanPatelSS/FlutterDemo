@@ -4,6 +4,7 @@ import 'package:fpp/utils/image_constant.dart';
 import 'package:fpp/utils/size_utils.dart';
 import 'package:fpp/view/error_screen.dart';
 import 'package:fpp/view/home_tab_bar_screen.dart';
+import 'package:fpp/view/patient_management_page.dart';
 import 'package:fpp/view/tab_appointment_screen.dart';
 import 'package:fpp/view/tab_bar_screen.dart';
 import 'package:fpp/widgets/app_bar/appbar_image.dart';
@@ -32,9 +33,9 @@ class DrawerViewState extends State<DrawerView> with AutomaticKeepAliveClientMix
   List<Widget> pages = [
     //const TabAppointmentScreenView(),
     const HomeTabBarScreen(initTab: CurrentTab.Appointment),
-    const ErrorScreen(error: 'Home'),
+    const ErrorScreen(error: "Coming soon"),
     // const ContactUsScreen(name: 'Test',),
-    const TabBarScreen(initTab: CurrentTabItem.contactus),
+    const ErrorScreen(error: "Coming soon"),
   ];
 
   @override

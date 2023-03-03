@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel;
 import 'package:flutter_calendar_carousel/classes/event.dart';
+import 'package:fpp/view/add_availibility_dialog.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:fpp/theme/app_decoration.dart';
 import 'package:fpp/theme/app_style.dart';
@@ -326,6 +327,7 @@ class _TabAvailabilityScreenState extends State<TabAvailabilityScreen> {
                 /*Navigator.push(
                     context, MaterialPageRoute(builder: (BuildContext context) =>
                 const PatientAddDetailsPage()));*/
+                _scaleDialog();
               },
               label: Text(
                 "Add availability",
@@ -350,6 +352,47 @@ class _TabAvailabilityScreenState extends State<TabAvailabilityScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _dialog(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+      backgroundColor: Colors.transparent,
+      //title: const Text("Flutter Dev's"),
+      /*content: const Text("FlutterDevs specializes in creating cost-effective "
+          "and efficient applications with our perfectly crafted, creative and "
+          "leading-edge flutter app development solutions for customers all around "
+          "the globe."),*/
+      content: AddAvailibilityDialog(),
+      /*actions: <Widget>[
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text(
+              "Okay",
+              style: TextStyle(color: Colors.red, fontSize: 17),
+            ))
+      ],*/
+    );
+  }
+
+  void _scaleDialog() {
+    showGeneralDialog(
+      context: context,
+      pageBuilder: (ctx, a1, a2) {
+        return Container();
+      },
+      transitionBuilder: (ctx, a1, a2, child) {
+        var curve = Curves.easeInOut.transform(a1.value);
+        return Transform.scale(
+          scale: curve,
+          child: _dialog(ctx),
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 300),
     );
   }
 }

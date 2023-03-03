@@ -3,6 +3,8 @@ class ImageConstant {
 
   static String imgBloodpressure7 = 'assets/images/img_bloodpressure7.png';
 
+  static String imgBloodpressure7Svg = 'assets/images/img_bloodpressure7.svg';
+
   static String imgRefresh = 'assets/images/img_refresh.svg';
 
   static String imgLocationGray900 = 'assets/images/img_location_gray_900.svg';

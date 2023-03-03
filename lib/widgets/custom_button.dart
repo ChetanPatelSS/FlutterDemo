@@ -251,6 +251,18 @@ class CustomButton extends StatelessWidget {
             1.58,
           ),
         );
+      case ButtonFontStyle.TitilliumWebBold12Weight700:
+        return TextStyle(
+          color: ColorConstant.whiteA700,
+          fontSize: getFontSize(
+            12,
+          ),
+          fontFamily: 'Titillium Web',
+          fontWeight: FontWeight.w700,
+          height: getVerticalSize(
+            1.56,
+          ),
+        );
       default:
         return TextStyle(
           color: ColorConstant.gray600,
@@ -294,5 +306,6 @@ enum ButtonFontStyle {
   TitilliumWebSemiBold12,
   TitilliumWebRegular12,
   TitilliumWebBold12,
-  TitilliumWebBold12Weight400
+  TitilliumWebBold12Weight400,
+  TitilliumWebBold12Weight700
 }

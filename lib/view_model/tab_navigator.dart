@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fpp/view/drawer_view.dart';
+import 'package:fpp/view/patient_management_page.dart';
 import 'package:fpp/view/patient_page.dart';
 import 'package:fpp/view/profile_page.dart';
 
@@ -21,6 +22,7 @@ class TabNavigator3 extends StatelessWidget {
     Widget child = const DrawerView();
     if(tabItem == BottomNavigationTabItem.home) {
       child = const DrawerView();
+      //child =  PatientManagementPage( initTab: PatientManagementTab.PatientSummary,);
     } else if(tabItem == BottomNavigationTabItem.patient) {
       child = const PatientPage();
     } else if(tabItem == BottomNavigationTabItem.profile) {

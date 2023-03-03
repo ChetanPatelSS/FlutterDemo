@@ -191,6 +191,13 @@ class CustomDropDown extends StatelessWidget {
           right: 10,
           bottom: 10,
         );
+      case DropDownPadding.PaddingT10_B10:
+        return getPadding(
+          top: 10,
+          right: 0,
+          bottom: 10,
+          left: 0
+        );
       case DropDownPadding.PaddingT13:
         return getPadding(
           left: 13,
@@ -208,6 +215,10 @@ class CustomDropDown extends StatelessWidget {
           bottom: 8,
           left: 8,
           right: 8
+        );
+      case DropDownPadding.PaddingZero:
+        return getPadding(
+            all: 0
         );
       default:
         return getPadding(
@@ -228,7 +239,9 @@ enum DropDownPadding {
   PaddingT10_1,
   PaddingT13,
   PaddingT11,
-  PaddingT8
+  PaddingT8,
+  PaddingZero,
+  PaddingT10_B10
 }
 
 enum DropDownVariant {
