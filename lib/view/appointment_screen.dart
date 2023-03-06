@@ -42,11 +42,7 @@ class SetAppointmentScreen extends StatelessWidget {
     "Item Three",
   ];
 
-  List<String> dropdownItemList2 = [
-    "Item One",
-    "Item Two",
-    "Item Three",
-  ];
+  List<String> dropdownItemList2 = ["01:00", "02:00", "03:00"];
 
   List<String> dropdownItemList3 = [
     "Item One",
@@ -297,237 +293,143 @@ class SetAppointmentScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: getPadding(
-                        left: 16,
-                        top: 12,
-                        right: 145,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Date",
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.left,
-                            style: AppStyle.txtTitilliumWebRegular12.copyWith(
-                              letterSpacing: getHorizontalSize(
-                                0.12,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            "Time",
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.left,
-                            style: AppStyle.txtTitilliumWebRegular12.copyWith(
-                              letterSpacing: getHorizontalSize(
-                                0.12,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: getPadding(
-                          top: 7,
-                          right: 25,
-                        ),
+                        padding: getPadding(left: 16, top: 16, right: 16),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CustomDropDown(
-                              icon: Container(
-                                margin: getMargin(
-                                  left: 0,
-                                ),
-                                child: CustomImageView(
-                                  svgPath: ImageConstant.imgArrowdown,
-                                ),
-                              ),
-                              width: getHorizontalSize(
-                                120,
-                              ),
-                              focusNode: FocusNode(),
-                              hintText: "DD/MM/YYYY",
-                              margin: getMargin(
-                                bottom: 1,
-                              ),
-                              padding: DropDownPadding.PaddingT10_1,
-                              items: dropdownItemList1,
-                              prefix: Container(
-                                margin: getMargin(
-                                  left: 4,
-                                  right: 2,
-                                  top: 12,
-                                  bottom: 12,
-                                ),
-                                child: CustomImageView(
-                                  svgPath: ImageConstant.imgCalendar,
-                                ),
-                              ),
-                              prefixConstraints: BoxConstraints(
-                                maxHeight: getVerticalSize(
-                                  40,
-                                ),
-                              ),
-                              onChanged: (value) {},
-                            ),
-                            CustomDropDown(
-                              icon: Container(
-                                margin: getMargin(
-                                  right: 0,
-                                ),
-                                child: CustomImageView(
-                                  svgPath: ImageConstant.imgArrowdown,
-                                ),
-                              ),
-                              width: getHorizontalSize(
-                                100,
-                              ),
-                              focusNode: FocusNode(),
-                              hintText: "00:00",
-                              margin: getMargin(
-                                left: 22,
-                                bottom: 1,
-                              ),
-                              padding: DropDownPadding.PaddingT10_1,
-                              items: dropdownItemList2,
-                              prefix: Container(
-                                margin: getMargin(
-                                  left: 8,
-                                  top: 12,
-                                  right: 8,
-                                  bottom: 12,
-                                ),
-                                child: CustomImageView(
-                                  svgPath: ImageConstant.imgClockLightBlue600,
-                                ),
-                              ),
-                              prefixConstraints: BoxConstraints(
-                                maxHeight: getVerticalSize(
-                                  40,
-                                ),
-                              ),
-                              onChanged: (value) {},
-                            ),
-                            Container(
-                              height: getVerticalSize(
-                                41,
-                              ),
-                              width: getHorizontalSize(
-                                34,
-                              ),
-                              margin: getMargin(
-                                left: 9,
-                              ),
-                              child: Stack(
-                                alignment: Alignment.topCenter,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Container(
-                                      height: getVerticalSize(
-                                        21,
-                                      ),
-                                      width: getHorizontalSize(
-                                        34,
-                                      ),
-                                      margin: getMargin(
-                                        bottom: 1,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: ColorConstant.lightBlue6000c,
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(
-                                            getHorizontalSize(
-                                              10,
-                                            ),
-                                          ),
-                                          bottomRight: Radius.circular(
-                                            getHorizontalSize(
-                                              10,
-                                            ),
-                                          ),
-                                        ),
-                                        border: Border.all(
-                                          color: ColorConstant.lightBlue60001,
-                                          width: getHorizontalSize(
-                                            1,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Container(
-                                      height: getVerticalSize(
-                                        19,
-                                      ),
-                                      width: getHorizontalSize(
-                                        34,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: ColorConstant.lightBlue600,
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(
-                                            getHorizontalSize(
-                                              10,
-                                            ),
-                                          ),
-                                          topRight: Radius.circular(
-                                            getHorizontalSize(
-                                              10,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Padding(
-                                      padding: getPadding(
-                                        top: 1,
-                                      ),
-                                      child: Text(
-                                        "am",
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.left,
-                                        style: AppStyle
-                                            .txtTitilliumWebRegular12WhiteA700
-                                            .copyWith(
-                                          letterSpacing: getHorizontalSize(
-                                            0.12,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Text(
-                                      "pm",
+                                  Text("Date",
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.left,
-                                      style: AppStyle
-                                          .txtTitilliumWebRegular12Gray600
-                                          .copyWith(
-                                        letterSpacing: getHorizontalSize(
-                                          0.12,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                      style: AppStyle.txtTitilliumWebRegular12.copyWith(
+                                          letterSpacing: getHorizontalSize(0.12))),
+                                  CustomDropDown(
+                                      width: getHorizontalSize(130),
+                                      focusNode: FocusNode(),
+                                      hintText: "DD/MM/YYYY",
+                                      padding: DropDownPadding.PaddingT10_1,
+                                      items: dropdownItemList1,
+                                      prefix: Container(
+                                          margin: getMargin(
+                                              left: 0, top: 12, right: 0, bottom: 12),
+                                          child: CustomImageView(
+                                              svgPath: ImageConstant.imgCalendar)),
+                                      prefixConstraints: BoxConstraints(
+                                          maxHeight: getVerticalSize(40)),
+                                      onChanged: (value) {}),
                                 ],
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Time",
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.left,
+                                      style: AppStyle.txtTitilliumWebRegular12.copyWith(
+                                          letterSpacing: getHorizontalSize(0.12))),
+                                  CustomDropDown(
+                                      width: getHorizontalSize(90),
+                                      focusNode: FocusNode(),
+                                      hintText: "00:00",
+                                      padding: DropDownPadding.PaddingT10_1,
+                                      items: dropdownItemList2,
+                                      prefix: Container(
+                                          margin: getMargin(
+                                              left: 5, top: 12, right: 5, bottom: 12),
+                                          child: CustomImageView(
+                                              svgPath: ImageConstant
+                                                  .imgClockLightBlue600)),
+                                      prefixConstraints: BoxConstraints(
+                                          maxHeight: getVerticalSize(40)),
+                                      onChanged: (value) {}),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("",
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.left,
+                                      style: AppStyle.txtTitilliumWebRegular12.copyWith(
+                                          letterSpacing: getHorizontalSize(0.12))),
+                                  Container(
+                                      height: getVerticalSize(41),
+                                      width: getHorizontalSize(34),
+                                      child: Stack(
+                                          alignment: Alignment.topCenter,
+                                          children: [
+                                            Align(
+                                                alignment: Alignment.bottomCenter,
+                                                child: Container(
+                                                    height: getVerticalSize(20),
+                                                    width: getHorizontalSize(34),
+                                                    margin: getMargin(bottom: 2),
+                                                    decoration: BoxDecoration(
+                                                        color: ColorConstant
+                                                            .lightBlue6000c,
+                                                        borderRadius: BorderRadius.only(
+                                                            bottomLeft:
+                                                            Radius.circular(
+                                                                getHorizontalSize(
+                                                                    10)),
+                                                            bottomRight:
+                                                            Radius.circular(
+                                                                getHorizontalSize(
+                                                                    10))),
+                                                        border: Border.all(
+                                                            color: ColorConstant
+                                                                .lightBlue60001,
+                                                            width: getHorizontalSize(
+                                                                1))))),
+                                            Align(
+                                                alignment: Alignment.topCenter,
+                                                child: Container(
+                                                    height: getVerticalSize(20),
+                                                    width: getHorizontalSize(34),
+                                                    decoration: BoxDecoration(
+                                                        color: ColorConstant
+                                                            .lightBlue600,
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(
+                                                                getHorizontalSize(
+                                                                    10)),
+                                                            topRight: Radius.circular(
+                                                                getHorizontalSize(
+                                                                    10)))))),
+                                            Align(
+                                                alignment: Alignment.topCenter,
+                                                child: Padding(
+                                                    padding: getPadding(top: 4),
+                                                    child: Text("am",
+                                                        overflow:
+                                                        TextOverflow.ellipsis,
+                                                        textAlign: TextAlign.left,
+                                                        style: AppStyle
+                                                            .txtTitilliumWebRegular12WhiteA700
+                                                            .copyWith(
+                                                            letterSpacing:
+                                                            getHorizontalSize(
+                                                                0.12))))),
+                                            Align(
+                                                alignment: Alignment.bottomCenter,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(bottom: 5),
+                                                  child: Text("pm",
+                                                      overflow: TextOverflow.ellipsis,
+                                                      textAlign: TextAlign.left,
+                                                      style: AppStyle
+                                                          .txtTitilliumWebRegular12Gray600
+                                                          .copyWith(
+                                                          letterSpacing:
+                                                          getHorizontalSize(
+                                                              0.12))),
+                                                ))
+                                          ]))
+                                ],
+                              )
+                            ])
                     ),
                     Padding(
                       padding: getPadding(

@@ -140,7 +140,7 @@ class _AddAvailibilityDialogState extends State<AddAvailibilityDialog> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Date",
+                            Text("Time",
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.left,
                                 style: AppStyle.txtTitilliumWebRegular12.copyWith(
@@ -181,7 +181,7 @@ class _AddAvailibilityDialogState extends State<AddAvailibilityDialog> {
                                           child: Container(
                                               height: getVerticalSize(20),
                                               width: getHorizontalSize(34),
-                                              margin: getMargin(bottom: 2),
+                                              margin: getMargin(bottom: 1),
                                               decoration: BoxDecoration(
                                                   color: ColorConstant
                                                       .lightBlue6000c,
@@ -202,7 +202,7 @@ class _AddAvailibilityDialogState extends State<AddAvailibilityDialog> {
                                       Align(
                                           alignment: Alignment.topCenter,
                                           child: Container(
-                                              height: getVerticalSize(19),
+                                              height: getVerticalSize(20),
                                               width: getHorizontalSize(34),
                                               decoration: BoxDecoration(
                                                   color: ColorConstant
@@ -217,7 +217,7 @@ class _AddAvailibilityDialogState extends State<AddAvailibilityDialog> {
                                       Align(
                                           alignment: Alignment.topCenter,
                                           child: Padding(
-                                              padding: getPadding(top: 1),
+                                              padding: getPadding(top: 4),
                                               child: Text("am",
                                                   overflow:
                                                   TextOverflow.ellipsis,
@@ -231,7 +231,7 @@ class _AddAvailibilityDialogState extends State<AddAvailibilityDialog> {
                                       Align(
                                           alignment: Alignment.bottomCenter,
                                           child: Padding(
-                                            padding: const EdgeInsets.only(bottom: 2),
+                                            padding: const EdgeInsets.only(bottom: 5),
                                             child: Text("pm",
                                                 overflow: TextOverflow.ellipsis,
                                                 textAlign: TextAlign.left,
