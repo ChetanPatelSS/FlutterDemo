@@ -4,9 +4,6 @@ import 'package:fpp/theme/app_style.dart';
 import 'package:fpp/utils/color_constant.dart';
 import 'package:fpp/utils/image_constant.dart';
 import 'package:fpp/utils/size_utils.dart';
-import 'package:fpp/widgets/app_bar/custom_app_bar.dart';
-import 'package:fpp/widgets/appbar_image.dart';
-import 'package:fpp/widgets/custom_bottom_bar.dart';
 import 'package:fpp/widgets/custom_button.dart';
 import 'package:fpp/widgets/custom_checkbox.dart';
 import 'package:fpp/widgets/custom_drop_down.dart';
@@ -79,11 +76,11 @@ class SetAppointmentScreen extends StatelessWidget {
     return Form(
       key: _formKey,
       child: Container(
-        padding: getPadding(
-          left: 24,
-          right: 24,
-        ),
-        decoration: AppDecoration.fillGray90099,
+        // padding: getPadding(
+        //   left: 0,
+        //   right: 0,
+        // ),
+        // decoration: AppDecoration.fillGray90099,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -106,7 +103,9 @@ class SetAppointmentScreen extends StatelessWidget {
                       padding: getPadding(
                         left: 16,
                         right: 16,
+                        top: 25,
                       ),
+                      //padding: const EdgeInsets.all(10.0),
                       decoration: AppDecoration.fillLightblue600.copyWith(
                         borderRadius: BorderRadiusStyle.customBorderTL10,
                       ),
@@ -116,7 +115,7 @@ class SetAppointmentScreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: getPadding(
-                              bottom: 13,
+                              bottom: 10,
                             ),
                             child: Text(
                               "Set Appointment",
@@ -271,9 +270,7 @@ class SetAppointmentScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: Padding(
-                        padding: getPadding(
-                          top: 21,
-                        ),
+                        padding: getPadding(top: 15, left: 15, right: 15),
                         child: Divider(
                           thickness: getVerticalSize(
                             1,
@@ -303,7 +300,7 @@ class SetAppointmentScreen extends StatelessWidget {
                       padding: getPadding(
                         left: 16,
                         top: 12,
-                        right: 119,
+                        right: 145,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -335,16 +332,23 @@ class SetAppointmentScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Padding(
                         padding: getPadding(
-                          left: 16,
                           top: 7,
-                          right: 16,
+                          right: 25,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CustomDropDown(
+                              icon: Container(
+                                margin: getMargin(
+                                  left: 0,
+                                ),
+                                child: CustomImageView(
+                                  svgPath: ImageConstant.imgArrowdown,
+                                ),
+                              ),
                               width: getHorizontalSize(
-                                129,
+                                120,
                               ),
                               focusNode: FocusNode(),
                               hintText: "DD/MM/YYYY",
@@ -355,9 +359,9 @@ class SetAppointmentScreen extends StatelessWidget {
                               items: dropdownItemList1,
                               prefix: Container(
                                 margin: getMargin(
-                                  left: 8,
+                                  left: 4,
+                                  right: 2,
                                   top: 12,
-                                  right: 8,
                                   bottom: 12,
                                 ),
                                 child: CustomImageView(
@@ -372,8 +376,16 @@ class SetAppointmentScreen extends StatelessWidget {
                               onChanged: (value) {},
                             ),
                             CustomDropDown(
+                              icon: Container(
+                                margin: getMargin(
+                                  right: 0,
+                                ),
+                                child: CustomImageView(
+                                  svgPath: ImageConstant.imgArrowdown,
+                                ),
+                              ),
                               width: getHorizontalSize(
-                                86,
+                                100,
                               ),
                               focusNode: FocusNode(),
                               hintText: "00:00",
@@ -418,7 +430,7 @@ class SetAppointmentScreen extends StatelessWidget {
                                     alignment: Alignment.bottomCenter,
                                     child: Container(
                                       height: getVerticalSize(
-                                        20,
+                                        21,
                                       ),
                                       width: getHorizontalSize(
                                         34,
