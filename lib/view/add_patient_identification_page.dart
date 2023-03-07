@@ -1,4 +1,5 @@
 import 'package:country_pickers/country.dart';
+import 'package:intl/intl.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/material.dart';
 import 'package:fpp/theme/app_decoration.dart';
@@ -71,6 +72,7 @@ class _AddPatientIdentificationPageState extends State<AddPatientIdentificationP
 
   final double commonFormFieldTopSpace = 18;
   final double commonTopSpaceBetweenTitleAndField = 8;
+  var txtSelectedDate = "DD/MM/YYYY";
 
   @override
   Widget build(BuildContext context) {
@@ -325,53 +327,76 @@ class _AddPatientIdentificationPageState extends State<AddPatientIdentificationP
                                   ],
                                 ),
                               ),
-                              Container(
-                                margin: getMargin(
-                                  top: commonTopSpaceBetweenTitleAndField,
-                                ),
-                                padding: getPadding(
-                                  left: 16,
-                                  top: 11,
-                                  right: 16,
-                                  bottom: 11,
-                                ),
-                                decoration:
-                                AppDecoration.fillLightblue6000c.copyWith(
-                                  borderRadius:
-                                  BorderRadiusStyle.roundedBorder10,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: getPadding(
-                                        top: 4,
-                                        bottom: 3,
-                                      ),
-                                      child: Text(
-                                        "DD/MM/YYYY",
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.left,
-                                        style: AppStyle
-                                            .txtTitilliumWebRegular12Gray600
-                                            .copyWith(
-                                          letterSpacing: getHorizontalSize(
-                                            0.12,
+                              InkWell(
+                                onTap: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(1950),
+                                      //DateTime.now() - not to allow to choose before today.
+                                      lastDate: DateTime(2100));
+
+                                  if (pickedDate != null) {
+                                    print(
+                                        pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                    String formattedDate =
+                                    DateFormat('dd/MM/yyyy').format(pickedDate);
+                                    print(
+                                        formattedDate); //formatted date output using intl package =>  2021-03-16
+                                    setState(() {
+                                      txtSelectedDate =
+                                          formattedDate; //set output date to TextField value.
+                                    });
+                                  } else {}
+                                },
+                                child: Container(
+                                  margin: getMargin(
+                                    top: commonTopSpaceBetweenTitleAndField,
+                                  ),
+                                  padding: getPadding(
+                                    left: 16,
+                                    top: 11,
+                                    right: 16,
+                                    bottom: 11,
+                                  ),
+                                  decoration:
+                                  AppDecoration.fillLightblue6000c.copyWith(
+                                    borderRadius:
+                                    BorderRadiusStyle.roundedBorder10,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: getPadding(
+                                          top: 4,
+                                          bottom: 3,
+                                        ),
+                                        child: Text(
+                                          txtSelectedDate,
+                                          overflow: TextOverflow.ellipsis,
+                                          textAlign: TextAlign.left,
+                                          style: AppStyle
+                                              .txtTitilliumWebRegular12Gray600
+                                              .copyWith(
+                                            letterSpacing: getHorizontalSize(
+                                              0.12,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    CustomImageView(
-                                      svgPath: ImageConstant.imgCalendar,
-                                      height: getSize(
-                                        24,
+                                      CustomImageView(
+                                        svgPath: ImageConstant.imgCalendar,
+                                        height: getSize(
+                                          24,
+                                        ),
+                                        width: getSize(
+                                          24,
+                                        ),
                                       ),
-                                      width: getSize(
-                                        24,
-                                      ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                               Padding(

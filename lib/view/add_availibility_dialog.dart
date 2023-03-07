@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:fpp/theme/app_decoration.dart';
 import 'package:fpp/theme/app_style.dart';
 import 'package:fpp/utils/color_constant.dart';
@@ -33,6 +34,9 @@ class _AddAvailibilityDialogState extends State<AddAvailibilityDialog> {
   List<String> dropdownItemList3 = ["Item One", "Item Two", "Item Three"];
 
   bool checkbox = false;
+  var isAmSelected = true;
+  var txtSelectedDate = "DD/MM/YYYY";
+  var txtSelectedTime = "00:00";
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +115,7 @@ class _AddAvailibilityDialogState extends State<AddAvailibilityDialog> {
               Padding(
                   padding: getPadding(left: 16, top: 16, right: 16),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,20 +125,90 @@ class _AddAvailibilityDialogState extends State<AddAvailibilityDialog> {
                                 textAlign: TextAlign.left,
                                 style: AppStyle.txtTitilliumWebRegular12.copyWith(
                                     letterSpacing: getHorizontalSize(0.12))),
-                            CustomDropDown(
-                                width: getHorizontalSize(130),
-                                focusNode: FocusNode(),
-                                hintText: "DD/MM/YYYY",
-                                padding: DropDownPadding.PaddingT10_1,
-                                items: dropdownItemList1,
-                                prefix: Container(
-                                    margin: getMargin(
-                                        left: 0, top: 12, right: 0, bottom: 12),
-                                    child: CustomImageView(
-                                        svgPath: ImageConstant.imgCalendar)),
-                                prefixConstraints: BoxConstraints(
-                                    maxHeight: getVerticalSize(40)),
-                                onChanged: (value) {}),
+                            InkWell(
+                              onTap: () async {
+                                DateTime? pickedDate = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1950),
+                                    //DateTime.now() - not to allow to choose before today.
+                                    lastDate: DateTime(2100));
+
+                                if (pickedDate != null) {
+                                  print(
+                                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                  String formattedDate =
+                                  DateFormat('dd/MM/yyyy').format(pickedDate);
+                                  print(
+                                      formattedDate); //formatted date output using intl package =>  2021-03-16
+                                  setState(() {
+                                    txtSelectedDate =
+                                        formattedDate; //set output date to TextField value.
+                                  });
+                                } else {}
+                              },
+                              /*child: CustomDropDown(
+                                        width: getHorizontalSize(130),
+                                        focusNode: FocusNode(),
+                                        hintText: txtSelectedDate,
+                                        padding: DropDownPadding.PaddingT10_1,
+                                        items: dropdownItemList1,
+                                        prefix: Container(
+                                            margin: getMargin(
+                                                left: 0, top: 12, right: 0, bottom: 12),
+                                            child: CustomImageView(
+                                                svgPath: ImageConstant.imgCalendar)),
+                                        prefixConstraints: BoxConstraints(
+                                            maxHeight: getVerticalSize(40)),
+                                        onChanged: (value) {}),*/
+                              child: Container(
+                                height: 45,
+                                padding: getPadding(
+                                    all: 10
+                                ),
+                                decoration:
+                                AppDecoration.fillLightblue6000c.copyWith(
+                                  borderRadius:
+                                  BorderRadiusStyle.roundedBorder10,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CustomImageView(
+                                      svgPath: ImageConstant.imgCalendar,
+                                      height: getSize(
+                                        18,
+                                      ),
+                                      width: getSize(
+                                        18,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: getPadding(
+                                          left: 9,
+                                          right: 9
+                                      ),
+                                      child: Text(
+                                        txtSelectedDate,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.left,
+                                        style: AppStyle
+                                            .txtTitilliumWebRegular12Gray600
+                                            .copyWith(
+                                          letterSpacing: getHorizontalSize(
+                                            0.12,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    CustomImageView(
+                                      svgPath: ImageConstant.imgArrowdown,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         Column(
@@ -145,21 +219,92 @@ class _AddAvailibilityDialogState extends State<AddAvailibilityDialog> {
                                 textAlign: TextAlign.left,
                                 style: AppStyle.txtTitilliumWebRegular12.copyWith(
                                     letterSpacing: getHorizontalSize(0.12))),
-                            CustomDropDown(
-                                width: getHorizontalSize(90),
-                                focusNode: FocusNode(),
-                                hintText: "00:00",
-                                padding: DropDownPadding.PaddingT10_1,
-                                items: dropdownItemList2,
-                                prefix: Container(
-                                    margin: getMargin(
-                                        left: 5, top: 12, right: 5, bottom: 12),
-                                    child: CustomImageView(
-                                        svgPath: ImageConstant
-                                            .imgClockLightBlue600)),
-                                prefixConstraints: BoxConstraints(
-                                    maxHeight: getVerticalSize(40)),
-                                onChanged: (value) {}),
+                            InkWell(
+                              onTap: () async {
+                                TimeOfDay? pickedTime =  await showTimePicker(
+                                  initialTime: TimeOfDay.now(),
+                                  context: context,
+                                );
+
+                                if(pickedTime != null ){
+                                  print(pickedTime.format(context));   //output 10:51 PM
+                                  DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
+                                  //converting to DateTime so that we can further format on different pattern.
+                                  print(parsedTime); //output 1970-01-01 22:53:00.000
+                                  String formattedTime = DateFormat('HH:mm').format(parsedTime);
+                                  print(formattedTime); //output 14:59
+                                  //DateFormat() is from intl package, you can format the time on any pattern you need.
+
+                                  setState(() {
+                                    txtSelectedTime = formattedTime; //set the value of text field.
+                                  });
+                                }else{
+                                  print("Time is not selected");
+                                }
+                              },
+                              /*child: CustomDropDown(
+                                        width: getHorizontalSize(90),
+                                        focusNode: FocusNode(),
+                                        hintText: "00:00",
+                                        padding: DropDownPadding.PaddingT10_1,
+                                        items: dropdownItemList2,
+                                        prefix: Container(
+                                            margin: getMargin(
+                                                left: 5, top: 12, right: 5, bottom: 12),
+                                            child: CustomImageView(
+                                                svgPath: ImageConstant
+                                                    .imgClockLightBlue600)),
+                                        prefixConstraints: BoxConstraints(
+                                            maxHeight: getVerticalSize(40)),
+                                        onChanged: (value) {}),*/
+                              child: Container(
+                                height: 45,
+                                padding: getPadding(
+                                    all: 10
+                                ),
+                                decoration:
+                                AppDecoration.fillLightblue6000c.copyWith(
+                                  borderRadius:
+                                  BorderRadiusStyle.roundedBorder10,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CustomImageView(
+                                      svgPath: ImageConstant.imgClockLightBlue600,
+                                      height: getSize(
+                                        18,
+                                      ),
+                                      width: getSize(
+                                        18,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: getPadding(
+                                          left: 9,
+                                          right: 9
+                                      ),
+                                      child: Text(
+                                        txtSelectedTime,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.left,
+                                        style: AppStyle
+                                            .txtTitilliumWebRegular12Gray600
+                                            .copyWith(
+                                          letterSpacing: getHorizontalSize(
+                                            0.12,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    CustomImageView(
+                                      svgPath: ImageConstant.imgArrowdown,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         Column(
@@ -171,76 +316,125 @@ class _AddAvailibilityDialogState extends State<AddAvailibilityDialog> {
                                 style: AppStyle.txtTitilliumWebRegular12.copyWith(
                                     letterSpacing: getHorizontalSize(0.12))),
                             Container(
-                                height: getVerticalSize(41),
-                                width: getHorizontalSize(34),
+                                height: getVerticalSize(50),
+                                width: getHorizontalSize(40),
                                 child: Stack(
                                     alignment: Alignment.topCenter,
                                     children: [
                                       Align(
                                           alignment: Alignment.bottomCenter,
-                                          child: Container(
-                                              height: getVerticalSize(20),
-                                              width: getHorizontalSize(34),
-                                              margin: getMargin(bottom: 1),
-                                              decoration: BoxDecoration(
-                                                  color: ColorConstant
-                                                      .lightBlue6000c,
-                                                  borderRadius: BorderRadius.only(
-                                                      bottomLeft:
-                                                      Radius.circular(
-                                                          getHorizontalSize(
-                                                              10)),
-                                                      bottomRight:
-                                                      Radius.circular(
-                                                          getHorizontalSize(
-                                                              10))),
-                                                  border: Border.all(
-                                                      color: ColorConstant
-                                                          .lightBlue60001,
-                                                      width: getHorizontalSize(
-                                                          1))))),
+                                          child: InkWell(
+                                            onTap:(){
+                                              setState(() {
+                                                isAmSelected = false;
+                                                print("on Pm selected");
+                                              });
+                                            },
+                                            child: Container(
+                                                height: getVerticalSize(25),
+                                                width: getHorizontalSize(40),
+                                                margin: getMargin(bottom: 2),
+                                                decoration: BoxDecoration(
+                                                    color: !isAmSelected ? ColorConstant
+                                                        .lightBlue600 : ColorConstant.whiteA700,
+                                                    borderRadius: BorderRadius.only(
+                                                        bottomLeft:
+                                                        Radius.circular(
+                                                            getHorizontalSize(
+                                                                10)),
+                                                        bottomRight:
+                                                        Radius.circular(
+                                                            getHorizontalSize(
+                                                                10))),
+                                                    border: Border.all(
+                                                        color: ColorConstant
+                                                            .lightBlue60001,
+                                                        width: getHorizontalSize(
+                                                            1)))),
+                                          )),
                                       Align(
                                           alignment: Alignment.topCenter,
-                                          child: Container(
-                                              height: getVerticalSize(20),
-                                              width: getHorizontalSize(34),
-                                              decoration: BoxDecoration(
-                                                  color: ColorConstant
-                                                      .lightBlue600,
-                                                  borderRadius: BorderRadius.only(
-                                                      topLeft: Radius.circular(
-                                                          getHorizontalSize(
-                                                              10)),
-                                                      topRight: Radius.circular(
-                                                          getHorizontalSize(
-                                                              10)))))),
+                                          child: InkWell(
+                                            onTap:(){
+                                              setState(() {
+                                                isAmSelected = true;
+                                                print("on Am selected");
+                                              });
+                                            },
+                                            child: Container(
+                                                height: getVerticalSize(25),
+                                                width: getHorizontalSize(40),
+                                                decoration: BoxDecoration(
+                                                    color: isAmSelected ? ColorConstant
+                                                        .lightBlue600 : ColorConstant.whiteA700,
+                                                    borderRadius: BorderRadius.only(
+                                                        topLeft: Radius.circular(
+                                                            getHorizontalSize(
+                                                                10)),
+                                                        topRight: Radius.circular(
+                                                            getHorizontalSize(
+                                                                10))
+                                                    ),
+                                                    border: Border.all(
+                                                        color: ColorConstant
+                                                            .lightBlue60001,
+                                                        width: getHorizontalSize(
+                                                            1))
+                                                )),
+                                          )),
                                       Align(
                                           alignment: Alignment.topCenter,
-                                          child: Padding(
-                                              padding: getPadding(top: 4),
-                                              child: Text("am",
-                                                  overflow:
-                                                  TextOverflow.ellipsis,
+                                          child: InkWell(
+                                            onTap: (){
+                                              setState(() {
+                                                isAmSelected = true;
+                                                print("on Am selected");
+                                              });
+                                            },
+                                            child: Padding(
+                                                padding: getPadding(top: 4),
+                                                child: Text("am",
+                                                    overflow:
+                                                    TextOverflow.ellipsis,
+                                                    textAlign: TextAlign.left,
+                                                    style: isAmSelected ? AppStyle
+                                                        .txtTitilliumWebRegular12WhiteA700
+                                                        .copyWith(
+                                                        letterSpacing:
+                                                        getHorizontalSize(
+                                                            0.12)) : AppStyle
+                                                        .txtTitilliumWebRegular12Gray600
+                                                        .copyWith(
+                                                        letterSpacing:
+                                                        getHorizontalSize(
+                                                            0.12)))),
+                                          )),
+                                      Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: InkWell(
+                                            onTap:(){
+                                              setState(() {
+                                                isAmSelected = false;
+                                                print("on Pm selected");
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(bottom: 5),
+                                              child: Text("pm",
+                                                  overflow: TextOverflow.ellipsis,
                                                   textAlign: TextAlign.left,
-                                                  style: AppStyle
+                                                  style: !isAmSelected ? AppStyle
                                                       .txtTitilliumWebRegular12WhiteA700
                                                       .copyWith(
                                                       letterSpacing:
                                                       getHorizontalSize(
-                                                          0.12))))),
-                                      Align(
-                                          alignment: Alignment.bottomCenter,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(bottom: 5),
-                                            child: Text("pm",
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style: AppStyle
-                                                    .txtTitilliumWebRegular12Gray600
-                                                    .copyWith(
-                                                    letterSpacing:
-                                                    getHorizontalSize(
-                                                        0.12))),
+                                                          0.12)) : AppStyle
+                                                      .txtTitilliumWebRegular12Gray600
+                                                      .copyWith(
+                                                      letterSpacing:
+                                                      getHorizontalSize(
+                                                          0.12))),
+                                            ),
                                           ))
                                     ]))
                           ],

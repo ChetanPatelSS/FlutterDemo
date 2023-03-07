@@ -50,86 +50,88 @@ class _PatientAddDetailsPageState extends State<PatientAddDetailsPage> with Tick
                 ]),
             body: SizedBox(
                 width: size.width,
-                child: SingleChildScrollView(
-                    child: Padding(
-                        padding: getPadding(top: 12),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: getPadding(left: 24, right: 24),
-                                child: Container(
-                                    height: getVerticalSize(50),
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                        color: ColorConstant.lightBlue6001901,
-                                        borderRadius: BorderRadius.circular(
-                                            getHorizontalSize(10)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color:
-                                              ColorConstant.lightBlue6001901,
-                                              spreadRadius: getHorizontalSize(2),
-                                              blurRadius: getHorizontalSize(2),
-                                              offset: const Offset(0, 1))
-                                        ]),
-                                    child: TabBar(
-                                      //labelPadding: EdgeInsets.zero,
-                                        labelColor: ColorConstant.lightBlue600,
-                                        labelStyle: TextStyle(
-                                            fontSize: getFontSize(12),
-                                            fontFamily: 'Titillium Web',
-                                            fontWeight: FontWeight.w600),
-                                        unselectedLabelColor:
-                                        ColorConstant.gray600,
-                                        unselectedLabelStyle: TextStyle(
-                                            fontSize: getFontSize(12),
-                                            fontFamily: 'Titillium Web',
-                                            fontWeight: FontWeight.w600),
-                                        indicatorPadding: getPadding(all: 8),
-                                        indicator: BoxDecoration(
-                                            color: ColorConstant.whiteA700,
-                                            borderRadius: BorderRadius.circular(
-                                                getHorizontalSize(5)),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color: ColorConstant.teal90019,
-                                                  spreadRadius:
-                                                  getHorizontalSize(2),
-                                                  blurRadius:
-                                                  getHorizontalSize(2),
-                                                  offset: const Offset(0, 0))
-                                            ]),
-                                        controller: _tabController,
-                                        tabs: const [
-                                          Tab(
-                                              child: Text("Identification ",
-                                                  overflow:
-                                                  TextOverflow.ellipsis)),
-                                          Tab(
-                                              child: Text("Emergency Contact",
-                                                  overflow:
-                                                  TextOverflow.ellipsis)),
-                                          Tab(
-                                              child: Text("Job ",
-                                                  overflow:
-                                                  TextOverflow.ellipsis))
-                                        ])),
+                child: Padding(
+                    padding: getPadding(top: 12, bottom: 100),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: getPadding(left: 24, right: 24),
+                            child: Container(
+                                height: getVerticalSize(50),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    color: ColorConstant.lightBlue6001901,
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(10)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color:
+                                          ColorConstant.lightBlue6001901,
+                                          spreadRadius: getHorizontalSize(2),
+                                          blurRadius: getHorizontalSize(2),
+                                          offset: const Offset(0, 1))
+                                    ]),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 8, right: 8),
+                                  child: TabBar(
+                                    labelPadding: EdgeInsets.zero,
+                                      labelColor: ColorConstant.lightBlue600,
+                                      labelStyle: TextStyle(
+                                          fontSize: getFontSize(12),
+                                          fontFamily: 'Titillium Web',
+                                          fontWeight: FontWeight.w600),
+                                      unselectedLabelColor:
+                                      ColorConstant.gray600,
+                                      unselectedLabelStyle: TextStyle(
+                                          fontSize: getFontSize(12),
+                                          fontFamily: 'Titillium Web',
+                                          fontWeight: FontWeight.w600),
+                                      indicatorPadding: getPadding(top: 8, bottom: 8),
+                                      indicator: BoxDecoration(
+                                          color: ColorConstant.whiteA700,
+                                          borderRadius: BorderRadius.circular(
+                                              getHorizontalSize(5)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: ColorConstant.teal90019,
+                                                spreadRadius:
+                                                getHorizontalSize(2),
+                                                blurRadius:
+                                                getHorizontalSize(2),
+                                                offset: const Offset(0, 0))
+                                          ]),
+                                      controller: _tabController,
+                                      tabs: const [
+                                        Tab(
+                                            child: Text("Identification ",
+                                                overflow:
+                                                TextOverflow.ellipsis)),
+                                        Tab(
+                                            child: Text("Emergency Contact",
+                                                overflow:
+                                                TextOverflow.ellipsis)),
+                                        Tab(
+                                            child: Text("Job ",
+                                                overflow:
+                                                TextOverflow.ellipsis))
+                                      ]),
+                                )),
+                          ),
+                          Expanded(
+                            child: TabBarView(controller: _tabController,children: [
+                              AddPatientIdentificationPage(
+                                  onNext: () => _tabController.index = 1
                               ),
-                              Container(
-                                  height: getVerticalSize(1425),
-                                  child: TabBarView(controller: _tabController,children: [
-                                    AddPatientIdentificationPage(
-                                        onNext: () => _tabController.index = 1
-                                    ),
-                                    AddPatientEmergencyContactsPage(
-                                        onNext: () => _tabController.index = 2
-                                    ),
-                                    AddPatientJobsAndEducationPage(
-                                        onSubmit: () => onTapArrowleft1(context)
-                                    )
-                                  ],))
-                            ]))))
+                              AddPatientEmergencyContactsPage(
+                                  onNext: () => _tabController.index = 2
+                              ),
+                              AddPatientJobsAndEducationPage(
+                                  onSubmit: () => onTapArrowleft1(context)
+                              )
+                            ],),
+                          )
+                        ])))
         ));
   }
 

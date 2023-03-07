@@ -379,8 +379,8 @@ class _TabAvailabilityScreenState extends State<TabAvailabilityScreen> {
     );
   }
 
-  void _scaleDialog() {
-    showGeneralDialog(
+  Future<void> _scaleDialog() async{
+    await showGeneralDialog(
       context: context,
       pageBuilder: (ctx, a1, a2) {
         return Container();
