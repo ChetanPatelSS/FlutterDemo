@@ -32,10 +32,11 @@ class _SplashViewState extends State<SplashView> {
             alignment: Alignment.center,
           ),
           Positioned(
-            bottom: 20,
-            left: 10,
-            right: 10,
-            child: Center(
+            bottom: 32,
+            left: 24,
+            right: 24,
+            child: SizedBox(
+              height: 56,
               child: ElevatedButton(
                 onPressed: () {
                   // Do something when the button is pressed
